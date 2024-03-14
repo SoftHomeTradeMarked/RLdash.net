@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EasyScript Online Editor</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    #outputCanvas {
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>EasyScript Online Editor</h1>
+    
+    <label for="inputCode">Enter EasyScript code:</label><br>
+    <textarea id="inputCode" rows="10" cols="50"></textarea><br>
+    <button onclick="runEasyScript()">Run EasyScript</button><br>
+    
+    <h2>Output:</h2>
+    <canvas id="outputCanvas" width="800" height="600"></canvas>
+</div>
+
+<script>
+function runEasyScript() {
+    var inputCode = document.getElementById('inputCode').value;
+    var outputCanvas = document.getElementById('outputCanvas');
+    var ctx = outputCanvas.getContext('2d');
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
+    
+    // Define variables
+    var playerX = 400;
+    var playerY = 300;
+    
+    // Execute EasyScript code
+    eval(inputCode);
+}
+
+// EasyScript functions
+function DrawPlayer() {
+    ctx.beginPath();
+    ctx.arc(playerX, playerY, 20, 0, Math.PI * 2);
+    ctx.fillStyle = "red";
+    ctx.fill();
+}
+</script>
+</body>
+</html>
